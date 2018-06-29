@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e0eba63583a7777ad2aec379073e7fbabad9eb003c979b8cd4a85f63f7374a8f"
+            "sha256": "ccdfc3e0c5c72ece04ba7029015a74e7e57c94c9b206b9b543e2d6d127032996"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -23,6 +23,13 @@
             ],
             "index": "pypi",
             "version": "==2.0.6"
+        },
+        "django-usda-nutrition": {
+            "hashes": [
+                "sha256:3ed660b9e097eb97e2f063c3b18226b03aeed954d25e03847bff96967fd63c25"
+            ],
+            "index": "pypi",
+            "version": "==0.2.0"
         },
         "pytz": {
             "hashes": [
