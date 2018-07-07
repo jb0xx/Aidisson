@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'usda_nutrition',
+    'dish',
+    'exercise',
+    'sleep',
+    'users',
 ]
 
 MIDDLEWARE = [
