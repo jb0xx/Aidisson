@@ -4,10 +4,10 @@ from users.models import Trainee
 
 # Create your models here.
 class Session(models.Model):
-    trainee         = models.ForeignKey(Trainee, on_delete=models.CASCADE)
-    starttime       = models.DateTimeField(null=True)
-    endtime         = models.DateTimeField(null=True)
-    quality         = models.FloatField(null=True)
+    trainee     = models.ForeignKey(Trainee, on_delete=models.CASCADE)
+    starttime   = models.DateTimeField(null=True)
+    endtime     = models.DateTimeField(null=True)
+    quality     = models.FloatField(null=True)
 
     def __str__(self):
         user = self.trainee.user.username
@@ -37,10 +37,16 @@ class Cycle(models.Model):
     )
 
     # Variables
-    session         = models.ForeignKey(Session, on_delete=models.CASCADE)
-    starttime       = models.DateTimeField()
-    endtime         = models.DateTimeField(auto_now_add=True)
-    stage           = models.CharField(
+    session     = models.ForeignKey(Session, on_delete=models.CASCADE)
+    starttime   = models.DateTimeField(null=True)
+    endtime     = models.DateTimeField(null=True)
+    stage       = models.CharField(
                         max_length=5,
                         choices=SLEEP_STAGES,
                         default=LIGHT1)
+
+
+    def __str__(self):
+        session = self.session
+        time = self.starttime.time()
+        return f"{session} // {time}"
