@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'exercise',
     'sleep',
     'users',
+    'weight',
 ]
 
 MIDDLEWARE = [
