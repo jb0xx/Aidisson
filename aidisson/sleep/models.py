@@ -7,7 +7,7 @@ class Session(models.Model):
     trainee     = models.ForeignKey(Trainee, on_delete=models.CASCADE)
     starttime   = models.DateTimeField(null=True)
     endtime     = models.DateTimeField(null=True)
-    quality     = models.FloatField(null=True)
+    quality     = models.DecimalField(max_digits=3, decimal_places=3, default=0)
 
     def __str__(self):
         user = self.trainee.user.username
