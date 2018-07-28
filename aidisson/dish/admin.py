@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Dish, Ingredient
+from .models import Dish, Ingredient, Meal
 
 @admin.register(Dish)
 class DishAdmin(admin.ModelAdmin):
@@ -9,3 +9,4 @@ class DishAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Ingredient)
+admin.site.register(Meal)

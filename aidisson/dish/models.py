@@ -34,6 +34,10 @@ class Dish(models.Model):
         return self.name
 
 
+    def get_total_calories(self):
+        return 4 * (2*self.fat_total + self.protein_total + self.carb_total)
+
+
     def save(self, *args, **kwargs):
         super(Dish, self).save(*args, **kwargs)
         serving_list = self.num_servings.split(',')
@@ -57,9 +61,37 @@ class Meal(models.Model):
     dishes      = models.ManyToManyField(Dish)
     datetime    = models.DateTimeField(auto_now_add=True)
     
+
     def __str__(self):
         username = self.trainee.user.username
         date = self.datetime.date()
-        time = self.datetime.time()
-        return f"{user}: {date}   {time}"
+        time = self.datetime.strftime("%H:%M:%S")
+        meal_type = self.determine_type()
+        return f"{username}: {date} {meal_type} - {time}"
+
+
+    def get_total_calories(self):
+        total = 0
+        for dish in self.dishes.all():
+            total += dish.get_total_calories()
+        return total
+
+
+    def determine_type(self):
+        if self.get_total_calories() < 400:
+            meal_type = 'Snack' 
+        else:
+            dt = self.datetime.seconds / 60 / 60
+            if dt > 18:
+                meal_type = 'Dinner'
+            elif dt > 12:
+                meal_type = 'Lunch'
+            elif dt > 4:
+                meal_type = 'Breakfast'
+            else:
+                meal_type = '???'
+        return meal_type
+
+
+
 

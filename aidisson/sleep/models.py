@@ -7,21 +7,26 @@ class Session(models.Model):
     trainee     = models.ForeignKey(Trainee, on_delete=models.CASCADE)
     starttime   = models.DateTimeField(null=True)
     endtime     = models.DateTimeField(null=True)
-    quality     = models.DecimalField(max_digits=3, decimal_places=3, default=0)
+    quality     = models.FloatField()
 
     def __str__(self):
         user = self.trainee.user.username
         date = self.starttime.date()
         return f"{user}: {date}"
-    # def get_duration(self):
-    # def set_starttime(self):
-    # def set_endtime(self):
+    
+
+    def get_duration(self):
+        """ returns duration of sleep session in minutes """
+        dt = self.endtime - self.starttime
+        return dt.seconds / 60
+
     # def get_quality(self):
     # def set_quality(self):
 
 
 
 class Cycle(models.Model):
+    """ cycles are marked by a Light1 or Awake to initiate """
     # Constants
     AWAKE = 'Awake'
     LIGHT1 = 'NREM1'
@@ -49,4 +54,4 @@ class Cycle(models.Model):
     def __str__(self):
         session = self.session
         time = self.starttime.time()
-        return f"{session} // {time}"
+        return f"{session}  {time}"

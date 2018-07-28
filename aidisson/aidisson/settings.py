@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'usda_nutrition',
+    # 'usda_nutrition',
     'dish',
     'exercise',
     'sleep',
