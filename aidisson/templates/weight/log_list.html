@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block head_title %}Your Weigh-ins! | {{ block.super}}{% endblock head_title %}
+
+{% block content %}
+<h1>Weight Logs</h1>
+
+<ul>
+{% for obj in object_list %}
+    <li>{{ obj.trainee }}<br/>
+    {{ obj.weight }} {{ obj.units }} {{ obj.log_datetime }}</li>
+{% endfor %}
+</ul>
+
+<a href="/weight/create/">Weigh In</a>
+{% endblock %}

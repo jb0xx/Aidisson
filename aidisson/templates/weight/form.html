@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block head_title %}Weigh In | {{ block.super}}{% endblock head_title %}
+
+{% block content %}
+<h1>Log a Weight</h1>
+
+{% if form.errors %}
+	{{ form.errors }}
+{% endif %}
+
+<form method='POST'> {% csrf_token %}
+    {{ form.as_p }}
+    <button type='submit'>Save</button>
+</form>
+
+{% endblock %}
+
