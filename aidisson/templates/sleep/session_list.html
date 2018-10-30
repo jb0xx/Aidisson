@@ -8,7 +8,7 @@
 <ul>
 {% for obj in object_list %}
     <li>
-    	<h4>{{ obj.trainee }} {{ obj.starttime }}</h4>
+    	<h4>{{ obj }}</h4>
     	Quality: {{ obj.quality }}<br/>
     	{{ obj.get_duration.hours }}hrs {{ obj.get_duration.minutes }}min
 	</li>

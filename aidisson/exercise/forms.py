@@ -10,7 +10,7 @@ class WorkoutCreateForm(forms.ModelForm):
             'trainee',
             'starttime',
             'endtime',
-            'intensity',
+            # 'intensity',
         ]
     
     def clean_name(self):
@@ -18,3 +18,4 @@ class WorkoutCreateForm(forms.ModelForm):
         if name == "Hello":
             raise forms.ValidationError("Not a valid name")
         return name
+    

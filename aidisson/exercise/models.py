@@ -16,3 +16,11 @@ class Workout(models.Model):
         return f"{user}: {date}"
 
 
+    def get_duration(self):
+        """ returns duration of sleep session in minutes """
+        dt = self.endtime - self.starttime
+        hours = dt.seconds / 3600
+        minutes = (dt.seconds / 60) % 60
+        duration = {"hours": round(hours), "minutes": round(minutes)}
+        return duration
+

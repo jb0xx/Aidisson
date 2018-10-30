@@ -34,6 +34,7 @@ urlpatterns = [
     url(r'^sleep/create/$', SleepCreateView.as_view()),
     url(r'^exercise/$', WorkoutListView.as_view()),
     url(r'^exercise/create/$', WorkoutCreateView.as_view()),
+    
     # url(r'^restaurants/$', RestaurantListView.as_view()), 
     # url(r'^restaurants/create/$', RestaurantCreateView.as_view()),
     # url(r'^restaurants/(?P<slug>[\w-]+)/$', RestaurantDetailView.as_view()),
