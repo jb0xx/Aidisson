@@ -1,3 +1,5 @@
+import math
+
 from django.db import models
 
 from users.models import Trainee
@@ -18,7 +20,10 @@ class Session(models.Model):
     def get_duration(self):
         """ returns duration of sleep session in minutes """
         dt = self.endtime - self.starttime
-        return dt.seconds / 60
+        hours = dt.seconds / 3600
+        minutes = (dt.seconds / 60) % 60
+        duration = {"hours": round(hours), "minutes": round(minutes)}
+        return duration
 
     # def get_quality(self):
     # def set_quality(self):

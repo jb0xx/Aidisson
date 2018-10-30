@@ -19,6 +19,9 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 
 from weight.views import WeightListView, WeightCreateView
+from sleep.views import SleepListView, SleepCreateView
+from exercise.views import WorkoutListView, WorkoutCreateView
+
 
 
 urlpatterns = [
@@ -27,7 +30,10 @@ urlpatterns = [
     url(r'^about/$', TemplateView.as_view(template_name='about.html')),
     url(r'^weight/$', WeightListView.as_view()),
     url(r'^weight/create/$', WeightCreateView.as_view()),
-
+    url(r'^sleep/$', SleepListView.as_view()),
+    url(r'^sleep/create/$', SleepCreateView.as_view()),
+    url(r'^exercise/$', WorkoutListView.as_view()),
+    url(r'^exercise/create/$', WorkoutCreateView.as_view()),
     # url(r'^restaurants/$', RestaurantListView.as_view()), 
     # url(r'^restaurants/create/$', RestaurantCreateView.as_view()),
     # url(r'^restaurants/(?P<slug>[\w-]+)/$', RestaurantDetailView.as_view()),

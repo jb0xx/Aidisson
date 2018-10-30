@@ -1,16 +1,16 @@
 from django import forms
 
-from .models import Workout
+from .models import Session
 
 
-class WorkoutCreateForm(forms.ModelForm):
+
+class SessionCreateForm(forms.ModelForm):
     class Meta:
-        model = Workout
+        model = Session
         fields = [
             'trainee',
             'starttime',
             'endtime',
-            'intensity',
         ]
     
     def clean_name(self):

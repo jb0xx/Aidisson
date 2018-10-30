@@ -7,11 +7,11 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from .forms import WeightCreateForm
 from .models import Log
 
-# Create your views here.
+
+
 class WeightListView(ListView):
-    def get_queryset(self):
-        queryset = Log.objects.all()
-        return queryset
+    queryset = Log.objects.all()
+    
 
 
 class WeightCreateView(CreateView):
