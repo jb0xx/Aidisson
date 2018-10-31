@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block head_title %}Track Your Diet! | {{ block.super }}{% endblock head_title %}
+
+{% block content %}
+<h1>Meal Logs</h1>
+
+<ul>
+{% for obj in object_list %}
+    <li>
+    	<h4>{{ obj }}</h4>
+
+    	{% for dish in obj.dishes.all %}
+	    	<li>{{ dish }} - {{ dish.get_total_calories }} cal</li>
+		{% endfor %}
+
+		Calories: {{ obj.get_total_calories }}
+	</li>
+{% endfor %}
+</ul>
+
+<a href="/diet/create/">Log Meal</a>
+{% endblock %}

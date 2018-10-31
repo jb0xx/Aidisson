@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block head_title %}Log Your Meal | {{ block.super }}{% endblock head_title %}
+
+{% block content %}
+<h1>Log a Meal</h1>
+
+{% if form.errors %}
+	{{ form.errors }}
+{% endif %}
+
+<form method='POST'> {% csrf_token %}
+    {{ form.as_p }}
+    <button type='submit'>Save</button>
+</form>
+
+{% endblock %}
+

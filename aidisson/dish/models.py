@@ -81,10 +81,10 @@ class Meal(models.Model):
         if self.get_total_calories() < 400:
             meal_type = 'Snack' 
         else:
-            dt = self.datetime.seconds / 60 / 60
+            dt = self.datetime.time().second / 60 / 60
             if dt > 18:
                 meal_type = 'Dinner'
-            elif dt > 12:
+            elif dt > 11:
                 meal_type = 'Lunch'
             elif dt > 4:
                 meal_type = 'Breakfast'
