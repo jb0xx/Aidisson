@@ -7,8 +7,8 @@ from .forms import WeightCreateForm
 from .models import Log
 
 
-class WeightListView(ListView):
-    queryset = Log.objects.all()
+# class WeightListView(ListView):
+#     queryset = Log.objects.all()
     
 
 class WeightCreateView(LoginRequiredMixin, CreateView):
@@ -24,5 +24,5 @@ class WeightCreateView(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         trainee = self.request.user.trainee
         object_list = Log.objects.filter(trainee=trainee)
-        kwargs['object_list'] = object_list.order_by('log_datetime')
+        kwargs['object_list'] = object_list.order_by('-log_datetime')
         return super(WeightCreateView, self).get_context_data(**kwargs)

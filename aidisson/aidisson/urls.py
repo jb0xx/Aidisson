@@ -19,15 +19,16 @@ from django.contrib import admin
 from django.contrib.auth.views import LoginView
 from django.views.generic import TemplateView
 
-from weight.views import WeightCreateView
-from sleep.views import SleepCreateView
-from exercise.views import WorkoutCreateView
 from dish.views import MealCreateView
+from exercise.views import WorkoutCreateView
+from sleep.views import SleepCreateView
+from users.views import HomeView
+from weight.views import WeightCreateView
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
+    url(r'^$', HomeView.as_view(template_name='home.html'), name='home'),
     url(r'^about/$', TemplateView.as_view(template_name='about.html'), name='about'),
     url(r'^login/$', LoginView.as_view(), name='login'),
 

@@ -25,5 +25,5 @@ class SleepCreateView(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         trainee = self.request.user.trainee
         object_list = Session.objects.filter(trainee=trainee)
-        kwargs['object_list'] = object_list.order_by('starttime')
+        kwargs['object_list'] = object_list.order_by('-starttime')
         return super(SleepCreateView, self).get_context_data(**kwargs)

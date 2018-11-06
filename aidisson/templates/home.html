@@ -1,27 +1,48 @@
 {% extends "base.html" %}
 
+{% block head_title %} {{ block.super }} {% endblock head_title %}
+
 {% block content %}
 
-<h1>Hello World!</h1>
-<h3>{{ block.super }}</h3>
-<p>
-    This is <code>{% verbatim %}{{ html_var }}{% endverbatim %}</code> coming through
-</p>
-<p>
-{% if num is not None %}
-Random number is {{ num }}
-{% endif %}
-</p>
-<p>
-{% for some_item in some_list %}
-    {% if some_item|divisibleby:"2" %}
-            Even number
-    {% endif %}
-    
-    {{ some_item }}<br/>
+<h2>Current Weight</h2>
+<h2>- {{ weight.weight }}{{ weight.units }} -</h2>
 
+<hr>
+
+<h4>Recent Meals</h4>
+<ul style="list-style-type:none">
+{% for meal in meals %}
+    <li>
+	<h5>({{ meal.determine_type }}) {{ meal.datetime.date }}</h5>
+	Calories: {{ meal.get_total_calories }}
+	</li>
 {% endfor %}
-</p>
-<p>Some item is {{ some_item }} </p>
+</ul>
 
-{% endblock content %}
+<hr>
+
+<h4>Recent Workouts</h4>
+<ul style="list-style-type:none">
+{% for workout in workouts %}
+    <li>
+	<h5>{{ workout.starttime.date }}</h5>
+	Intensity: {{ workout.intensity }}<br/>
+	{{ workout.get_duration.hours }}hrs {{ workout.get_duration.minutes }}min
+	</li>
+{% endfor %}
+</ul>
+
+<hr>
+
+<h4>Recent Sleep Logs</h4>
+<ul style="list-style-type:none">
+{% for sleep_session in sleep_sessions %}
+    <li>
+    	<h5>{{ sleep_session.starttime.date }}</h5>
+    	Quality: {{ sleep_session.quality }}<br/>
+    	{{ sleep_session.get_duration.hours }}hrs {{ sleep_session.get_duration.minutes }}min
+	</li>
+{% endfor %}
+
+
+{% endblock %}
