@@ -1,19 +1,32 @@
 {% extends "base.html" %}
 
-{% block head_title %}Track Your Exercise! | {{ block.super }}{% endblock head_title %}
+{% block head_title %}Log Your Exercise | {{ block.super }}{% endblock head_title %}
 
 {% block content %}
-<h1>Exercise Logs</h1>
 
-<ul>
+
+<h2>Log a Workout</h2>
+{% if form.errors %}
+	{{ form.errors }}
+{% endif %}
+
+<form method='POST'> {% csrf_token %}
+    {{ form.as_p }}
+    <button type='submit'>Save</button>
+</form>
+
+<hr>
+
+<h3>Your Past Workouts</h3>
+<ul style="list-style-type:none">
 {% for obj in object_list %}
     <li>
-    	<h4>{{ obj }}</h4>
-    	Intensity: {{ obj.intensity }}<br/>
-    	{{ obj.get_duration.hours }}hrs {{ obj.get_duration.minutes }}min
+	<h4>{{ obj.starttime.date }}</h4>
+	Intensity: {{ obj.intensity }}<br/>
+	{{ obj.get_duration.hours }}hrs {{ obj.get_duration.minutes }}min
 	</li>
 {% endfor %}
 </ul>
 
-<a href="/exercise/create/">Log Workout</a>
 {% endblock %}
+

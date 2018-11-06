@@ -8,7 +8,6 @@ class WeightCreateForm(forms.ModelForm):
     class Meta:
         model = Log
         fields = [
-            'trainee',
             'weight',
             'units',
         ]

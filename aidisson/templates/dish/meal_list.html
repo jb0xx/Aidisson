@@ -3,21 +3,34 @@
 {% block head_title %}Track Your Diet! | {{ block.super }}{% endblock head_title %}
 
 {% block content %}
-<h1>Meal Logs</h1>
 
-<ul>
+<h2>Log a Meal</h2>
+{% if form.errors %}
+	{{ form.errors }}
+{% endif %}
+
+<form method='POST'> {% csrf_token %}
+    {{ form.as_p }}
+    <button type='submit'>Save</button>
+</form>
+
+<hr>
+
+<h3>Your Past Meals</h3>
+<ul style="list-style-type:none">
 {% for obj in object_list %}
     <li>
-    	<h4>{{ obj }}</h4>
-
-    	{% for dish in obj.dishes.all %}
-	    	<li>{{ dish }} - {{ dish.get_total_calories }} cal</li>
-		{% endfor %}
-
-		Calories: {{ obj.get_total_calories }}
+	<h4>({{ obj.determine_type }}) {{ obj.datetime.date }}</h4>
+	{% for dish in obj.dishes.all %}
+    	<li>{{ dish }} - {{ dish.get_total_calories }} cal</li>
+	{% endfor %}
+	Calories: {{ obj.get_total_calories }}
 	</li>
 {% endfor %}
 </ul>
 
-<a href="/diet/create/">Log Meal</a>
+<hr>
+
+
+<a href="/diet/dish/">Create Dish</a>
 {% endblock %}

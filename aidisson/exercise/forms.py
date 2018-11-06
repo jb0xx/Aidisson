@@ -7,10 +7,9 @@ class WorkoutCreateForm(forms.ModelForm):
     class Meta:
         model = Workout
         fields = [
-            'trainee',
             'starttime',
             'endtime',
-            # 'intensity',
+            'intensity',
         ]
     
     def clean_name(self):

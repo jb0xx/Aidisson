@@ -8,7 +8,7 @@ class MealCreateForm(forms.ModelForm):
     class Meta:
         model = Meal
         fields = [
-            'trainee',
+            # 'trainee',
             'dishes',
             # 'datetime',
         ]

@@ -8,7 +8,7 @@ class SessionCreateForm(forms.ModelForm):
     class Meta:
         model = Session
         fields = [
-            'trainee',
+            # 'trainee',
             'starttime',
             'endtime',
         ]

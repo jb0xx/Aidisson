@@ -16,26 +16,27 @@ Including another URLconf
 
 from django.conf.urls import url
 from django.contrib import admin
+from django.contrib.auth.views import LoginView
 from django.views.generic import TemplateView
 
-from weight.views import WeightListView, WeightCreateView
-from sleep.views import SleepListView, SleepCreateView
-from exercise.views import WorkoutListView, WorkoutCreateView
-from dish.views import MealListView, MealCreateView
+from weight.views import WeightCreateView
+from sleep.views import SleepCreateView
+from exercise.views import WorkoutCreateView
+from dish.views import MealCreateView
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', TemplateView.as_view(template_name='home.html')),
-    url(r'^about/$', TemplateView.as_view(template_name='about.html')),
-    url(r'^weight/$', WeightListView.as_view()),
-    url(r'^weight/create/$', WeightCreateView.as_view()),
-    url(r'^sleep/$', SleepListView.as_view()),
-    url(r'^sleep/create/$', SleepCreateView.as_view()),
-    url(r'^exercise/$', WorkoutListView.as_view()),
-    url(r'^exercise/create/$', WorkoutCreateView.as_view()),
-    url(r'^diet/$', MealListView.as_view()),
-    url(r'^diet/create/$', MealCreateView.as_view()),
+    url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
+    url(r'^about/$', TemplateView.as_view(template_name='about.html'), name='about'),
+    url(r'^login/$', LoginView.as_view(), name='login'),
+
+    url(r'^diet/$', MealCreateView.as_view(), name='diet'),
+    url(r'^exercise/$', WorkoutCreateView.as_view(), name='exercise'),
+    url(r'^sleep/$', SleepCreateView.as_view(), name='sleep'),
+    # url(r'^weight/$', WeightListView.as_view(), name='weight'),
+    url(r'^weight/$', WeightCreateView.as_view(), name='weight'),
+    
     
     # url(r'^restaurants/(?P<slug>[\w-]+)/$', RestaurantDetailView.as_view()),
     
